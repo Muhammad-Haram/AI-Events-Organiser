@@ -1,6 +1,8 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import Header from "@/components/header";
+import { ConvexClientProvider } from "./ConvexClientProvider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata = {
   title: "Spott",
@@ -21,27 +23,33 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
 
-          {/* header */}
-          <Header />
+          <ClerkProvider>
+            <ConvexClientProvider>
 
-          <main className="relative min-h-screen container mx-auto pt-40 md:pt-32">
+              {/* header */}
+              <Header />x
 
-            {/* glow */}
-            <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-              <div className="absolute top-0 left-1/4 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-orange-600/20 rounded-full blur-3xl" />
-            </div>
+              <main className="relative min-h-screen container mx-auto pt-40 md:pt-32">
 
-            <div className="relative z-10 min-h-[70vh]">
-              {children}
-            </div>
+                {/* glow */}
+                <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+                  <div className="absolute top-0 left-1/4 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl" />
+                  <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-orange-600/20 rounded-full blur-3xl" />
+                </div>
 
-            {/* footer */}
-            <footer className="border-t border-gray-800/50 py-8 px-6 max-w-7xl mx-auto">
-              <div className="text-sm text-gray-400">Powered By Muhammad Haram</div>
-            </footer>
+                <div className="relative z-10 min-h-[70vh]">
+                  {children}
+                </div>
 
-          </main>
+                {/* footer */}
+                <footer className="border-t border-gray-800/50 py-8 px-6 max-w-7xl mx-auto">
+                  <div className="text-sm text-gray-400">Powered By Muhammad Haram</div>
+                </footer>
+
+              </main>
+
+            </ConvexClientProvider>
+          </ClerkProvider>
         </ThemeProvider>
 
       </body>

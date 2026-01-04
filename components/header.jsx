@@ -14,6 +14,7 @@ const Header = () => {
 
                         {/* pro badge */}
 
+
                     </Link>
 
                     {/* search & location - Desktop Only */}
